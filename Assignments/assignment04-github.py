@@ -12,10 +12,17 @@ fileInfo = repo.get_contents("wsaa-andrew-code.txt")
 urlOfFile = fileInfo.download_url
 
 response = requests.get(urlOfFile)
-contentOfFile = response.text
 
-# Replacing anything that resembles Andrew even when it is inside a word and case insensitive.
+# Adding if statement for error handling.
+
+if response.status_code == 200:
+    contentOfFile = response.text  
+else:
+    print(f"Error: {response.status_code}")
+
+# Replacing anything that resembles 'Andrew' even when it is inside a word, also case insensitive.
 # Using regex pattern.
+
 modified_content = re.sub(r"(?i)andrew", "Matthias", contentOfFile)
 
 print("Modified Content:\n", modified_content)
