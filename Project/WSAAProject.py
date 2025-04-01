@@ -4,17 +4,34 @@ from config import config as cfg
 
 app = Flask(__name__)
 
-# Configure MySQL Database from config file.
-DB_HOST = cfg.get('DB_HOST', 'localhost')
-DB_USER = cfg.get('DB_USER', 'username')
-DB_PASSWORD = cfg.get('DB_PASSWORD', 'password')
-DB_NAME = cfg.get('DB_NAME', 'dbname')
-
 def get_db_connection():
-    return pymysql.connect(host=DB_HOST, user=DB_USER, password=DB_PASSWORD, database=DB_NAME, cursorclass=pymysql.cursors.DictCursor)
+    try:
+        connection = pymysql.connect(
+            host=cfg.get("db_host"),
+            user=cfg.get("db_user"),
+            password=cfg.get("db_password"),
+            database=cfg.get("db_database"),
+            cursorclass=pymysql.cursors.DictCursor
+        )
+        return connection
+    except pymysql.MySQLError as err:
+        return None
 
-# Routes for CRUD Operations.
-
+# Create expense.
+@app.route('/api/expenses', methods=['GET'])
+def get_expenses():
+    connection = get_db_connection()
+    if connection is None:
+        return jsonify({"error": "Database connection failed"}), 500
+    try:
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM expenses")
+        expenses = cursor.fetchall()
+        cursor.close()
+        connection.close()
+        return jsonify(expenses)
+    except pymysql.MySQLError as err:
+        return jsonify({"error": str(err)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
