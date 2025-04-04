@@ -45,6 +45,27 @@ def add_expense():
         cursor.close()
         connection.close()
         return jsonify({"message": "Expense added successfully!"}), 201
+    except (KeyError, TypeError):
+        return jsonify({"error": "Invalid JSON data"}), 400
+    except mysql.connector.Error as err:
+        return jsonify({"error": str(err)}), 500
+    except RuntimeError as err:
+        return jsonify({"error": str(err)}), 500
+
+# Modify.    
+@app.route('/api/expenses/<int:id>', methods=['GET'])
+def get_expense(id):
+    try:
+        connection = get_db_connection()
+        cursor = connection.cursor(dictionary=True)
+        cursor.execute("SELECT id, category, date, description, amount FROM expenses WHERE id = %s", (id,))
+        expense = cursor.fetchone()
+        cursor.close()
+        connection.close()
+        if expense:
+            return jsonify(expense)
+        else:
+            return jsonify({"error": "Expense not found"}), 404
     except mysql.connector.Error as err:
         return jsonify({"error": str(err)}), 500
     except RuntimeError as err:
@@ -63,6 +84,8 @@ def update_expense(id):
         cursor.close()
         connection.close()
         return jsonify({"message": "Expense updated successfully!"})
+    except (KeyError, TypeError):
+        return jsonify({"error": "Invalid JSON data"}), 400
     except mysql.connector.Error as err:
         return jsonify({"error": str(err)}), 500
     except RuntimeError as err:
