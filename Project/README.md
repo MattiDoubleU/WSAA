@@ -35,4 +35,14 @@ https://www.geeksforgeeks.org/ajax-introduction/
 
 AI:
 
-I asked for potential improvements (prompt: How can I potentially improve this code: ) of my code and was provided with *'try'* and *'except'* blocks in the flask code blocks.
+I asked for potential improvements for each of the individual code blocks, initial function, get, create, modify & update. (prompt: How can I potentially improve this code: ). The answer delivered suggested to include *'try'* and *'except'* statements for error handling: 
+
+```
+try:
+
+except mysql.connector.Error as err:
+        return jsonify({"error": str(err)}), 500
+except RuntimeError as err:
+        return jsonify({"error": str(err)}), 500
+```
+
