@@ -32,6 +32,7 @@ bootstrap.com
 
 https://www.geeksforgeeks.org/how-to-use-simple-api-using-ajax/
 https://www.geeksforgeeks.org/ajax-introduction/
+https://www.geeksforgeeks.org/flask-app-routing/?ref=next_article
 
 AI:
 
