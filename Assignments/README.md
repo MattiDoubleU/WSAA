@@ -30,8 +30,8 @@ https://vlegalwaymayo.atu.ie/mod/assign/view.php?id=1131888
 
 ### References:
 
-https://docs.python-requests.org
-https://requests.readthedocs.io
+- https://docs.python-requests.org
+- https://requests.readthedocs.io
 
 	
 ## Assignment 03:
@@ -56,10 +56,10 @@ https://vlegalwaymayo.atu.ie/mod/page/view.php?id=1131905
 
 ### References:
 
-https://requests.readthedocs.io/en/latest/user/quickstart/#response-status-codes
-https://docs.python.org/3/library/functions.html#open
-https://docs.python.org/3/library/json.html#json.dump
-https://stackoverflow.com/questions/713794/catching-an-exception-while-using-a-python-with-statement
+- https://requests.readthedocs.io/en/latest/user/quickstart/#response-status-codes
+- https://docs.python.org/3/library/functions.html#open
+- https://docs.python.org/3/library/json.html#json.dump
+- https://stackoverflow.com/questions/713794/catching-an-exception-while-using-a-python-with-statement
 
 ## Assignment 04:
 
@@ -81,6 +81,6 @@ https://vlegalwaymayo.atu.ie/mod/page/view.php?id=1131912
 
 ### References:
 
-https://pygithub.readthedocs.io/en/latest/introduction.html
-https://docs.python.org/3/library/re.html
-https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
+- https://pygithub.readthedocs.io/en/latest/introduction.html
+- https://docs.python.org/3/library/re.html
+- https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
