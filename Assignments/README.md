@@ -26,7 +26,7 @@ https://vlegalwaymayo.atu.ie/mod/assign/view.php?id=1131888
 
     Create a repository for this module, and upload a link to where you will put your handups.
 
-Summary: I initially thought this task would be quite difficult, but after reviewing the documentation and revisiting the lecture material, it turned out to be straightforward, and the code produced the expected result.
+**Summary**: I initially thought this task would be quite difficult, but after reviewing the documentation and revisiting the lecture material, it turned out to be straightforward, and the code produced the expected result.
 
 ### References:
 
@@ -52,7 +52,7 @@ https://vlegalwaymayo.atu.ie/mod/page/view.php?id=1131905
 
     You do not need to over comment your code.
 
-Summary:Like in the previous assignment, I based this code primarily on what was covered in the lectures. However, I wanted to enhance it further, so I added an ```if``` statement for basic error handling.
+**Summary**: Like in the previous assignment, I based this code primarily on what was covered in the lectures. However, I wanted to enhance it further, so I added an ```if``` statement for basic error handling.
 
 ### References:
 
@@ -77,7 +77,7 @@ https://vlegalwaymayo.atu.ie/mod/page/view.php?id=1131912
 
     Marks: Marks will be given for the functionality and layout of the code; I do expect minimal comments to indicate you know what the program is doing.
 
-Summary: For this assignment, I first created a private repository named "MattiDoubleU/Testrepository-for-WSAA" and added the source file "wsaa-andrew-code.txt". Initially, the code only replaced instances of 'Andrew' when it appeared as a standalone word. Using regular expressions I modified the logic to also replace any occurrence of 'Andrew', including case-insensitive matches and instances where it appeared as part of a larger word. Additionally, I created a separate config.py file, following the approach demonstrated in the lecture. Like in the previous assignment, I used an ```if``` statement for basic error handling and I have also pushed the output text wsaa-andrew-code.txt to the repo for demonstration purposes.
+**Summary**: For this assignment, I first created a private repository named "MattiDoubleU/Testrepository-for-WSAA" and added the source file "wsaa-andrew-code.txt". Initially, the code only replaced instances of 'Andrew' when it appeared as a standalone word. Using regular expressions I modified the logic to also replace any occurrence of 'Andrew', including case-insensitive matches and instances where it appeared as part of a larger word. Additionally, I created a separate config.py file, following the approach demonstrated in the lecture. Like in the previous assignment, I used an ```if``` statement for basic error handling and I have also pushed the output text wsaa-andrew-code.txt to the repo for demonstration purposes.
 
 ### References:
 
