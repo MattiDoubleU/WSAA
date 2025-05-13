@@ -6,6 +6,12 @@ const editExpenseForm = document.getElementById('edit-expense-form');
 
 let currentExpenseId = null; // To store the ID of the expense being edited
 
+function escapeHTML(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
 function loadExpenses() {
     fetch('http://127.0.0.1:5000/api/expenses')
         .then(response => response.json())
@@ -13,12 +19,12 @@ function loadExpenses() {
             expensesTableBody.innerHTML = '';
             data.forEach(expense => {
                 const row = `<tr>
-                    <td>${expense.category}</td>
-                    <td>${expense.date}</td>
-                    <td>${expense.description}</td>
-                    <td>${expense.amount}</td>
+                    <td>${escapeHTML(expense.category)}</td>
+                    <td>${escapeHTML(expense.date)}</td>
+                    <td>${escapeHTML(expense.description)}</td>
+                    <td>${escapeHTML(expense.amount.toString())}</td>
                     <td>
-                        <button onclick="showEditForm('${expense.id}', '${expense.category}', '${expense.date}', '${expense.description}', '${expense.amount}')">Edit</button>
+                        <button onclick="showEditForm('${expense.id}', '${escapeHTML(expense.category)}', '${expense.date}', '${escapeHTML(expense.description)}', '${expense.amount}')">Edit</button>
                         <button onclick="deleteExpense('${expense.id}')">Delete</button>
                     </td>
                 </tr>`;
@@ -33,7 +39,7 @@ addExpenseForm.addEventListener('submit', function(event) {
     const category = document.getElementById('category').value;
     const date = document.getElementById('date').value;
     const description = document.getElementById('description').value;
-    const amount = document.getElementById('amount').value;
+    const amount = parseFloat(document.getElementById('amount').value).toFixed(2);
 
     fetch('http://127.0.0.1:5000/api/expenses', {
         method: 'POST',
@@ -44,14 +50,13 @@ addExpenseForm.addEventListener('submit', function(event) {
     .then(data => {
         console.log('Expense added:', data);
         addExpenseForm.reset();
-        loadExpenses(); // Reload the expense list
+        loadExpenses();
     })
     .catch(error => console.error('Error adding expense:', error));
 });
 
 function showEditForm(id, category, date, description, amount) {
     currentExpenseId = id;
-    document.getElementById('edit-id').value = id;
     document.getElementById('edit-category').value = category;
     document.getElementById('edit-date').value = date;
     document.getElementById('edit-description').value = description;
@@ -71,7 +76,7 @@ editExpenseForm.addEventListener('submit', function(event) {
     const category = document.getElementById('edit-category').value;
     const date = document.getElementById('edit-date').value;
     const description = document.getElementById('edit-description').value;
-    const amount = document.getElementById('edit-amount').value;
+    const amount = parseFloat(document.getElementById('edit-amount').value).toFixed(2);
 
     fetch(`http://127.0.0.1:5000/api/expenses/${currentExpenseId}`, {
         method: 'PUT',
@@ -82,25 +87,24 @@ editExpenseForm.addEventListener('submit', function(event) {
     .then(data => {
         console.log('Expense updated:', data);
         hideEditForm();
-        loadExpenses(); // Reload the expense list
+        loadExpenses();
     })
     .catch(error => console.error('Error updating expense:', error));
 });
 
 function deleteExpense(id) {
     if (confirm('Are you sure you want to delete this expense?')) {
-        fetch(`/api/expenses/${id}`, {
+        fetch(`http://127.0.0.1:5000/api/expenses/${id}`, {
             method: 'DELETE',
         })
         .then(response => response.json())
         .then(data => {
             console.log('Expense deleted:', data);
-            loadExpenses(); // Reload the expense list
+            loadExpenses();
         })
         .catch(error => console.error('Error deleting expense:', error));
     }
 }
 
-// Load expenses when the page loads
-loadExpenses();
+window.addEventListener('DOMContentLoaded', loadExpenses);
 </script>
