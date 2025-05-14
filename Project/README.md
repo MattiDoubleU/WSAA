@@ -18,14 +18,20 @@ I have encountered CORS restrictions in my browers and spent a long while on try
 
 **3. Database:**
 
+I use a standard SQL database named expenses.sql, which is hosted locally using WampServer. 
 
 **4. Referencing style:**
+
+CORS (Cross-Origin Resource Sharing):
 
 https://requestly.com/blog/what-is-cors-and-how-to-bypass-it/
 https://www.geeksforgeeks.org/http-access-control-cors/
 
+Html dropdown menu:
 
-The referencing style chosen for this project is MLA in the Jupyter Notebook: Author(s). "Title of Web Page." Website Title, Publisher (if different from website title), Date of Publication, URL. 
+https://www.geeksforgeeks.org/html-dropdown/ 
+https://www.wikihow.com/Create-a-Dropdown-Menu-in-HTML-and-CSS
+https://www.w3schools.com/Css/css_dropdowns.asp
 
 https://www.geeksforgeeks.org/how-to-install-pymysql-in-python/
 bootstrap.com
@@ -33,6 +39,8 @@ bootstrap.com
 https://www.geeksforgeeks.org/how-to-use-simple-api-using-ajax/
 https://www.geeksforgeeks.org/ajax-introduction/
 https://www.geeksforgeeks.org/flask-app-routing/?ref=next_article
+
+https://python-reference.readthedocs.io/en/latest/docs/str/formatting.html
 
 AI:
 
