@@ -20,12 +20,17 @@ I have encountered CORS restrictions in my browers and spent a long while on try
 
 I use a standard SQL database named expenses.sql, which is hosted locally using WampServer. 
 
-**4. Referencing style:**
+**4. References & further reading:**
 
 CORS (Cross-Origin Resource Sharing):
 
 https://requestly.com/blog/what-is-cors-and-how-to-bypass-it/
 https://www.geeksforgeeks.org/http-access-control-cors/
+
+AJAX (asynchronous JavaScript and XML): 
+
+https://www.w3schools.com/xml/ajax_intro.asp
+https://stackoverflow.com/questions/71092933/how-to-use-one-ajax-handler-for-multiple-purposes-with-callbacks
 
 Html dropdown menu:
 
