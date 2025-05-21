@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
 import mysql.connector
 from config import config as cfg
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)  # This enables CORS for all routes by default
 
 def get_db_connection():
     try:
