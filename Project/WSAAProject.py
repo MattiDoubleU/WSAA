@@ -24,7 +24,7 @@ def get_expenses():
     try:
         connection = get_db_connection()
         cursor = connection.cursor(dictionary=True)
-        cursor.execute("SELECT * FROM expenses")
+        cursor.execute("SELECT * FROM money_spent")
         expenses = cursor.fetchall()
         cursor.close()
         connection.close()
@@ -41,7 +41,7 @@ def add_expense():
         data = request.json
         connection = get_db_connection()
         cursor = connection.cursor()
-        cursor.execute("INSERT INTO expenses (category, date, description, amount) VALUES (%s, %s, %s, %s)", 
+        cursor.execute("INSERT INTO money_spent (category, date, description, amount) VALUES (%s, %s, %s, %s)", 
                        (data['category'], data['date'], data['description'], data['amount']))
         connection.commit()
         cursor.close()
@@ -60,7 +60,7 @@ def get_expense(id):
     try:
         connection = get_db_connection()
         cursor = connection.cursor(dictionary=True)
-        cursor.execute("SELECT id, category, date, description, amount FROM expenses WHERE id = %s", (id,))
+        cursor.execute("SELECT id, category, date, description, amount FROM money_spent WHERE id = %s", (id,))
         expense = cursor.fetchone()
         cursor.close()
         connection.close()
@@ -80,7 +80,7 @@ def update_expense(id):
         data = request.json
         connection = get_db_connection()
         cursor = connection.cursor()
-        cursor.execute("UPDATE expenses SET category=%s, date=%s, description=%s, amount=%s WHERE id=%s", 
+        cursor.execute("UPDATE money_spent SET category=%s, date=%s, description=%s, amount=%s WHERE id=%s", 
                        (data['category'], data['date'], data['description'], data['amount'], id))
         connection.commit()
         cursor.close()
@@ -99,7 +99,7 @@ def delete_expense(id):
     try:
         connection = get_db_connection()
         cursor = connection.cursor()
-        cursor.execute("DELETE FROM expenses WHERE id=%s", (id,))
+        cursor.execute("DELETE FROM money_spent WHERE id=%s", (id,))
         connection.commit()
         cursor.close()
         connection.close()
