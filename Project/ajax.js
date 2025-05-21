@@ -69,7 +69,7 @@ function deleteExpense(id, callback) {
     });
 }
 
-// --- Testing Code ---
+// testing code
 
 // Callback function for getAll
 // Modified to match the database schema fields
