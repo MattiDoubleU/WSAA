@@ -14,6 +14,7 @@ This web application enables users to track expenses across various categories. 
 **2. Project challenges:**
 
 I have encountered CORS restrictions in my browers and spent a long while on trying to find a workaround.
+Finally I came across ```pip install flask-cors``` and added ```CORS(app)```  to my code to enable CORS for all routes by default.
 
 
 **3. Database:**
@@ -26,6 +27,7 @@ CORS (Cross-Origin Resource Sharing):
 
 https://requestly.com/blog/what-is-cors-and-how-to-bypass-it/
 https://www.geeksforgeeks.org/http-access-control-cors/
+https://stackoverflow.com/questions/25594893/how-to-enable-cors-in-flask
 
 AJAX (asynchronous JavaScript and XML): 
 
