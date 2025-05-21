@@ -108,6 +108,13 @@ def delete_expense(id):
         return jsonify({"error": str(err)}), 500
     except RuntimeError as err:
         return jsonify({"error": str(err)}), 500
+    
+@app.errorhandler(Exception)
+def handle_exception(e):
+    import traceback
+    print("ERROR:", traceback.format_exc())
+    return {"error": "Internal server error"}, 500
+
 
 if __name__ == '__main__':
     app.run(debug=True)
