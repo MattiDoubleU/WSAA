@@ -1,143 +1,110 @@
 function getAll(callback) {
     $.ajax({
-        url: "http://127.0.0.1:5000/api/expenses",
-        method: "GET",
-        dataType: "json",
-        success: function (result) {
+        "url": "http://127.0.0.1:5000/api/expenses", 
+        "data": "", 
+        "dataType": "JSON",
+        "success": function(result) {
+           
             callback(result);
         },
-        error: function (xhr, status, error) {
-            console.log("error: " + status + " msg: " + error);
+        "error": function(xhr, status, error) {
+            console.log("Error fetching all expenses: " + status + " msg:" + error);
         }
     });
 }
 
-function createExpense(expense, callback) {
+// Modified to match the database schema: Category, Date, Description, Amount
+function createExpense(expenseData, callback) {
+    console.log("Creating expense: " + JSON.stringify(expenseData));
     $.ajax({
-        url: "http://127.0.0.1:5000/api/expenses",
-        method: "POST",
-        data: JSON.stringify(expense),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (result) {
+        "url": "http://127.0.0.1:5000/api/expenses", 
+        "data": JSON.stringify(expenseData),
+        "dataType": "JSON",
+        contentType: "application/json; charset=utf-8", 
+        "success": function(result) {
+          
             callback(result);
         },
-        error: function (xhr, status, error) {
-            console.log("error: " + status + " msg: " + error);
+        "error": function(xhr, status, error) {
+            console.log("Error creating expense: " + status + " msg:" + error);
         }
     });
 }
 
-function updateExpense(expense, callback) {
+// Modified to match the database schema: Transactionnumber (for ID), Category, Date, Description, Amount
+function updateExpense(Expense, callback) {
+    console.log("Updating expense: " + JSON.stringify(Expense));
     $.ajax({
-        url: "http://127.0.0.1:5000/api/expenses/" + encodeURIComponent(expense.id),
-        method: "PUT",
-        data: JSON.stringify(expense),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (result) {
+        "url": "http://127.0.0.1:5000/api/expenses/" + encodeURI(Expense.Transactionnumber), // Use Transactionnumber for ID in URL
+        "method": "PUT",
+        "data": JSON.stringify(Expense),
+        "dataType": "JSON",
+        contentType: "application/json; charset=utf-8", 
+        "success": function(result) {
+            console.log("Update successful:", result);
             callback(result);
         },
-        error: function (xhr, status, error) {
-            console.log("error: " + status + " msg: " + error);
+        "error": function(xhr, status, error) {
+            console.log("Error updating expense: " + status + " msg:" + error);
         }
     });
 }
 
+// Function to delete an expense by ID
 function deleteExpense(id, callback) {
+    console.log("Deleting expense with ID: " + id);
     $.ajax({
-        url: "http://127.0.0.1:5000/api/expenses/" + encodeURIComponent(id),
-        method: "DELETE",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (result) {
+        "url": "http://127.0.0.1:5000/api/expenses/" + id, // 'id' here refers to Transactionnumber
+        "method": "DELETE",
+        "data": "", 
+        "dataType": "JSON",
+        contentType: "application/json; charset=utf-8", 
+        "success": function(result) {
+            console.log("Delete successful:", result);
             callback(result);
         },
-        error: function (xhr, status, error) {
-            console.log("error: " + status + " msg: " + error);
+        "error": function(xhr, status, error) {
+            console.log("Error deleting expense: " + status + " msg:" + error);
         }
     });
 }
 
-// UI Logic
+// --- Testing Code ---
 
-function loadExpenses() {
-    getAll(function (expenses) {
-        const tbody = $("#expenses");
-        tbody.empty();
-        expenses.forEach(function (expense) {
-            const row = `<tr>
-                <td>${expense.category}</td>
-                <td>${expense.date}</td>
-                <td>${expense.description}</td>
-                <td>${expense.amount}</td>
-                <td>
-                    <button onclick="showEditForm(${expense.id}, '${expense.category}', '${expense.date}', '${expense.description}', ${expense.amount})">Edit</button>
-                    <button onclick="deleteExpenseUI(${expense.id})">Delete</button>
-                </td>
-            </tr>`;
-            tbody.append(row);
-        });
-    });
-}
+// Callback function for getAll
+// Modified to match the database schema fields
+function processGetAllResponse(result) {
+    console.log("Processing all expenses response:");
+    if (Array.isArray(result)) {
+        for (let expense of result) { 
+            let displayExpense = {}; 
+            displayExpense.Transactionnumber = expense.Transactionnumber;
+            displayExpense.Category = expense.Category;
+            displayExpense.Date = expense.Date;
+            displayExpense.Description = expense.Description;
+            displayExpense.Amount = expense.Amount;
 
-function setupFormHandlers() {
-    $("#add-expense-form").submit(function (e) {
-        e.preventDefault();
-        const expense = {
-            category: $("#category").val(),
-            date: $("#date").val(),
-            description: $("#description").val(),
-            amount: parseFloat($("#amount").val())
-        };
-        createExpense(expense, function () {
-            $("#add-expense-form")[0].reset();
-            loadExpenses();
-        });
-    });
-
-    $("#edit-expense-form").submit(function (e) {
-        e.preventDefault();
-        const expense = {
-            id: parseInt($("#edit-id").val()),
-            category: $("#edit-category").val(),
-            date: $("#edit-date").val(),
-            description: $("#edit-description").val(),
-            amount: parseFloat($("#edit-amount").val())
-        };
-        updateExpense(expense, function () {
-            hideEditForm();
-            loadExpenses();
-        });
-    });
-}
-
-function showEditForm(id, category, date, description, amount) {
-    $("#edit-id").val(id);
-    $("#edit-category").val(category);
-    $("#edit-date").val(date);
-    $("#edit-description").val(description);
-    $("#edit-amount").val(amount);
-    $("#edit-expense-container").show();
-}
-
-function hideEditForm() {
-    $("#edit-expense-container").hide();
-    $("#edit-expense-form")[0].reset();
-}
-
-function deleteExpenseUI(id) {
-    if (confirm("Are you sure you want to delete this expense?")) {
-        deleteExpense(id, function () {
-            loadExpenses();
-        });
+            console.log(displayExpense);
+        }
+    } else {
+        console.log("Expected an array of expenses, but received:", result);
     }
 }
 
-// Init
+// Callback function for createExpense
+function processCreateResponse(result) {
+    console.log("Processing create expense response:");
+    console.log(result);
+}
 
-$(document).ready(function () {
-    setupFormHandlers();
-    loadExpenses();
-});
+// Callback function for updateExpense
+function processUpdateResponse(result) {
+    console.log("Processing update expense response:");
+    console.log(result);
+}
 
+// Callback function for deleteExpense
+function processDeleteResponse(result) {
+    console.log("Processing delete expense response:");
+    console.log(result);
+}
