@@ -39,6 +39,7 @@ def get_expenses():
 def add_expense():
     try:
         data = request.json
+        print("Received POST data:", data) 
         connection = get_db_connection()
         cursor = connection.cursor()
         cursor.execute("INSERT INTO money_spent (category, date, description, amount) VALUES (%s, %s, %s, %s)", 
