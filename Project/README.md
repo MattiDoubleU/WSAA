@@ -4,6 +4,8 @@ This is the project for the 2025 Web Services and Applications (WSAA) module. A 
 
 This web application enables users to track expenses across various categories. Entered data is stored in a SQL database (expenses.sql), and a Flask server API (WSAAProject.py) facilitates CRUD (Create, Read, Update, Delete) operations, allowing users to manage their past expenses through an AJAX-powered interface.
 
+I spent quite a bit of time to make the UI look nice and finally came across Tailwind CSS, which helps to use its utility classes to style elements more easily.
+
 **1. Repository Structure:**
 
 - a. Readme: README.md
@@ -22,6 +24,10 @@ Finally I came across ```pip install flask-cors``` and added ```CORS(app)```  to
 I use a standard SQL database named expenses.sql, which is hosted locally using WampServer. 
 
 **4. References & further reading:**
+
+Tailwinds CSS:
+
+https://tailwindcss.com/
 
 CORS (Cross-Origin Resource Sharing):
 
