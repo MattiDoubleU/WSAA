@@ -184,3 +184,30 @@ function appendExpenseToTable(expense) {
     `;
     $("#expenses").append(row);
 }
+
+function handleEdit(id) {
+    const category = prompt("New category:");
+    const date = prompt("New date (YYYY-MM-DD):");
+    const description = prompt("New description:");
+    const amount = parseFloat(prompt("New amount:"));
+
+    const updatedExpense = {
+        Transactionnumber: id,
+        Category: category,
+        Date: date,
+        Description: description,
+        Amount: amount
+    };
+
+    updateExpense(updatedExpense, function () {
+        location.reload();
+    });
+}
+
+function handleDelete(id) {
+    if (confirm("Are you sure you want to delete this expense?")) {
+        deleteExpense(id, function () {
+            $(`#row-${id}`).remove(); 
+        });
+    }
+}
