@@ -25,15 +25,15 @@ def add_expense():
     try:
         data = request.json
         print("Received POST data:", data)
-        required_keys = {'category', 'date', 'description', 'amount'}
+        required_keys = {'Category', 'Date', 'Description', 'Amount'}
         if not required_keys.issubset(data):
             return jsonify({"error": "Missing required fields"}), 400
 
         expense = {
-            "category": data["category"],
-            "date": data["date"],
-            "description": data["description"],
-            "amount": data["amount"]
+            "Category": data["Category"],
+            "Date": data["Date"],
+            "Description": data["Description"],
+            "Amount": data["Amount"]
         }
         saved_expense = expenseDAO.create(expense)
         return jsonify(saved_expense), 201
@@ -57,7 +57,7 @@ def get_expense(id):
 def update_expense(id):
     try:
         data = request.json
-        required_keys = {'category', 'date', 'description', 'amount'}
+        required_keys = {'Category', 'Date', 'Description', 'Amount'}
         if not required_keys.issubset(data):
             return jsonify({"error": "Missing required fields"}), 400
         expenseDAO.update(id, data)
