@@ -11,19 +11,27 @@ I spent quite a bit of time to make the UI look nice and finally came across Tai
 - a. Readme: README.md
 - b. CreateDb.py
 - c. createtable.py
-- d. WSAAProject.py
+- d. ExpenseDAO.py
+- e. WSAAProjectServer.py
+- f. ajax.js
+- g. Expenses.html
 
 **2. Project challenges:**
 
 I have encountered CORS restrictions in my browers and spent a long while on trying to find a workaround.
 Finally I came across ```pip install flask-cors``` and added ```CORS(app)```  to my code to enable CORS for all routes by default.
 
-
 **3. Database:**
 
 I use a standard SQL database named expenses.sql, which is hosted locally using WampServer. 
 
 **4. References & further reading:**
+
+This project was built using the foundational code from the courseware and the andrewbeattycourseware/deploytopythonanywhere repository. While the core backend logic was adopted, I significantly revamped the user interface. This involved rewriting the frontend, incorporating modern CSS, and extensively modifying the JavaScript to render buttons as desired.
+
+JavaScript:
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 
 Tailwinds CSS:
 
@@ -39,21 +47,14 @@ AJAX (asynchronous JavaScript and XML):
 
 https://www.w3schools.com/xml/ajax_intro.asp
 https://stackoverflow.com/questions/71092933/how-to-use-one-ajax-handler-for-multiple-purposes-with-callbacks
+https://www.geeksforgeeks.org/how-to-use-simple-api-using-ajax/
+https://www.geeksforgeeks.org/flask-app-routing/?ref=next_article
 
 Html dropdown menu:
 
 https://www.geeksforgeeks.org/html-dropdown/ 
 https://www.wikihow.com/Create-a-Dropdown-Menu-in-HTML-and-CSS
 https://www.w3schools.com/Css/css_dropdowns.asp
-
-https://www.geeksforgeeks.org/how-to-install-pymysql-in-python/
-bootstrap.com
-
-https://www.geeksforgeeks.org/how-to-use-simple-api-using-ajax/
-https://www.geeksforgeeks.org/ajax-introduction/
-https://www.geeksforgeeks.org/flask-app-routing/?ref=next_article
-
-https://python-reference.readthedocs.io/en/latest/docs/str/formatting.html
 
 AI:
 
