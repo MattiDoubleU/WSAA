@@ -69,14 +69,6 @@ function updateExpense(Expense, callback) {
 
 // Function to delete an expense by ID
 function deleteExpense(id, callback) {
-// Normalize keys to lowercase
-    const formattedData = {
-        category: expenseData.Category,
-        date: expenseData.Date,
-        description: expenseData.Description,
-        amount: expenseData.Amount
-    };
-
     console.log("Deleting expense with ID: " + id);
     $.ajax({
         "url": "http://127.0.0.1:5000/api/expenses/" + id, // 'id' here refers to Transactionnumber
@@ -142,7 +134,7 @@ function processDeleteResponse(result) {
     console.log(result);
 }
 
-// The below section I added again to make the UI work. I used AI to enhance the code as previous version didn't work
+// The below section I added again to make the UI work. I used AI to enhance the code as previous version didn't work.
 // When DOM is ready
 $(document).ready(function () {
     // Fetch and display all existing expenses
@@ -178,13 +170,16 @@ $(document).ready(function () {
 // Helper to add a row to the table
 function appendExpenseToTable(expense) {
     const row = `
-        <tr>
+        <tr id="row-${expense.Transactionnumber}">
             <td class="px-6 py-4 whitespace-nowrap">${expense.Transactionnumber}</td>
             <td class="px-6 py-4 whitespace-nowrap">${expense.Category}</td>
             <td class="px-6 py-4 whitespace-nowrap">${expense.Date}</td>
             <td class="px-6 py-4 whitespace-nowrap">${expense.Description}</td>
             <td class="px-6 py-4 whitespace-nowrap">${expense.Amount.toFixed(2)}</td>
-            <td class="px-6 py-4 whitespace-nowrap">—</td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <button onclick="handleEdit(${expense.Transactionnumber})">Edit</button>
+                <button onclick="handleDelete(${expense.Transactionnumber})">Delete</button>
+            </td>
         </tr>
     `;
     $("#expenses").append(row);
