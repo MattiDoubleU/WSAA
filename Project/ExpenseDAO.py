@@ -42,7 +42,7 @@ class ExpenseDAO:
 
     def findByID(self, id):
         cursor = self.getcursor()
-        sql = "SELECT * FROM money_spent WHERE transactionnumber = %s"
+        sql = "SELECT * FROM money_spent WHERE Transactionnumber = %s"
         cursor.execute(sql, (id,))
         result = cursor.fetchone()
         self.closeAll()
@@ -50,27 +50,27 @@ class ExpenseDAO:
 
     def create(self, expense):
         cursor = self.getcursor()
-        sql = "INSERT INTO money_spent (category, date, description, amount) VALUES (%s, %s, %s, %s)"
+        sql = "INSERT INTO money_spent (Category, Date, Description, Amount) VALUES (%s, %s, %s, %s)"
         values = (
-            expense.get("category"),
-            expense.get("date"),
-            expense.get("description"),
-            expense.get("amount")
+            expense.get("Category"),
+            expense.get("Date"),
+            expense.get("Description"),
+            expense.get("Amount")
         )
         cursor.execute(sql, values)
         self.connection.commit()
-        expense["transactionnumber"] = cursor.lastrowid
+        expense["Transactionnumber"] = cursor.lastrowid
         self.closeAll()
         return expense
 
     def update(self, id, expense):
         cursor = self.getcursor()
-        sql = "UPDATE money_spent SET category=%s, date=%s, description=%s, amount=%s WHERE transactionnumber = %s"
+        sql = "UPDATE money_spent SET Category=%s, Date=%s, Description=%s, Amount=%s WHERE Transactionnumber = %s"
         values = (
-            expense.get("category"),
-            expense.get("date"),
-            expense.get("description"),
-            expense.get("amount"),
+            expense.get("Category"),
+            expense.get("Date"),
+            expense.get("Description"),
+            expense.get("Amount"),
             id
         )
         cursor.execute(sql, values)
@@ -79,13 +79,13 @@ class ExpenseDAO:
 
     def delete(self, id):
         cursor = self.getcursor()
-        sql = "DELETE FROM money_spent WHERE transactionnumber = %s"
+        sql = "DELETE FROM money_spent WHERE Transactionnumber = %s"
         cursor.execute(sql, (id,))
         self.connection.commit()
         self.closeAll()
 
     def convertToDictionary(self, resultLine):
-        attkeys = ['transactionnumber', 'category', 'date', 'description', 'amount']
+        attkeys = ['Transactionnumber', 'Category', 'Date', 'Description', 'Amount']
         expense = {attkeys[i]: resultLine[i] for i in range(len(attkeys))}
         return expense
 
