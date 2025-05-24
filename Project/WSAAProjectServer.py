@@ -1,9 +1,15 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from flask_cors import cross_origin
 from ExpenseDAO import expenseDAO  
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes.
+
+@app.route('/')
+@cross_origin()
+def index():
+    return "Hello, World!"
 
 # Get all expenses.
 @app.route('/api/expenses', methods=['GET'])
