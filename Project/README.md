@@ -6,6 +6,8 @@ This web application enables users to track expenses across various categories. 
 
 I spent quite a bit of time to make the UI look nice and finally came across Tailwind CSS, which helps to use its utility classes to style elements more easily.
 
+The WebApp is hosted Luciernagas.pythonanywhere.com/expenses
+
 **1. Repository Structure:**
 
 - a. Readme: README.md
@@ -55,6 +57,10 @@ Html dropdown menu:
 https://www.geeksforgeeks.org/html-dropdown/ 
 https://www.wikihow.com/Create-a-Dropdown-Menu-in-HTML-and-CSS
 https://www.w3schools.com/Css/css_dropdowns.asp
+
+Python:
+
+https://python-reference.readthedocs.io/en/latest/docs/str/formatting.html
 
 AI:
 
