@@ -50,7 +50,8 @@ function updateExpense(Expense, callback) {
         amount: expenseData.Amount
     };
 
-    console.log("Updating expense: " + JSON.stringify(Expense));
+    console.log("Updating expense: " + JSON.stringify(formattedData));
+
     $.ajax({
         "url": "http://127.0.0.1:5000/api/expenses/" + encodeURI(Expense.Transactionnumber), // Use Transactionnumber for ID in URL
         "method": "PUT",
